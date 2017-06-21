@@ -2,28 +2,8 @@ import React, { Component } from 'react';
 import {Form, FormGroup, ControlLabel, FormControl, HelpBlock, Col, Button} from "react-bootstrap";
 import * as firebase from "firebase";
 
-var config = {
-	apiKey: "AIzaSyC5UvXqoM0ijZIG2BngCpAMFHlSu2SwitA",
-	authDomain: "myblog-dbb10.firebaseapp.com",
-	databaseURL: "https://myblog-dbb10.firebaseio.com",
-	projectId: "myblog-dbb10",
-	storageBucket: "myblog-dbb10.appspot.com",
-	messagingSenderId: "636865537944"
-};
-firebase.initializeApp(config);
 
-var database = firebase.database();
-var postListRef = database.ref('/posts');
-var newPostRef = postListRef.push();
-var desc = `One of the things I love about working at Facebook is the emphasis we put on personal growth and the objectives people have for their careers. We believe a person shouldn’t have to be a manager in order to lead people at the company.Strong leadership from individual contributors (ICs) drives product development, and as a designer it’s the best way to develop in your career. In fact it’s the reason the IC and manager tracks are parallel, not sequential. Becoming a manager isn’t seen as a promotion, it just means you’re shifting your focus.
-			I joined Facebook during the summer of 2014, as an IC in the London office. It was an exciting time to join, as product teams were being established in London for the first time. There was just a handful of product designers in the newly opened office, which sits in between Euston Station and Regents Park, over three glass-clad floors.`;
 
-function writePostData(title, desc) {
-  newPostRef.set({
-    title: title,
-    desc : desc
-  });
-}
 export default class WritePost extends React.Component {
 	constructor(){
 		super();
@@ -34,17 +14,30 @@ export default class WritePost extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
-
+	componentDidMount() {
+		const database = firebase.database();
+		const postListRef = database.ref('/posts');
+		this.newPostRef = postListRef.push();
+	}
+	writePostData(title, desc) {
+		this.newPostRef.set({
+			title: title,
+			desc : desc
+		});
+	}
 	getInitialState() {
 		return {
 			title: '',
-			desc: ''
+			desc: '',
+			valid: false,
 		};
 	}
 
 	getValidationState() {
 		const length = this.state.title.length;
-		if (length > 10) return 'success';
+		if (length > 10) {
+			return 'success';
+		}
 		else if (length > 5) return 'warning';
 		else if (length > 0) return 'error';
 	}
@@ -57,15 +50,20 @@ export default class WritePost extends React.Component {
 	
 	handleSubmit(e) {
 		e.preventDefault();
-		writePostData(this.state.title, this.state.desc);
+		if(this.getValidationState() != 'success') return alert("Incomplete Form");
+		this.writePostData(this.state.title, this.state.desc);
 		alert("Added Post");
+		this.setState({
+			title: '',
+			desc: ''
+		});
 	}
 
     render() {
       return (
       <div>
-        <h1> Write Post </h1>
         <div className="col-md-6">
+        <h1> Write Post </h1>
         <Form onSubmit={this.handleSubmit}>
         <FormGroup controlId="formBasicText" validationState={this.getValidationState()}>
         	<ControlLabel>Title</ControlLabel>
@@ -76,7 +74,7 @@ export default class WritePost extends React.Component {
         </FormGroup>
         <FormGroup controlId="formBasicText2">
         	<ControlLabel>Description</ControlLabel>
-        	<FormControl type="text" placeholder="Enter text" name="desc" onChange={this.handleChange}/>
+        	<FormControl type="text" value={this.state.desc} placeholder="Enter text" name="desc" onChange={this.handleChange}/>
         	<FormControl.Feedback />
         </FormGroup>
         <FormGroup>

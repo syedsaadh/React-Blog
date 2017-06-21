@@ -4,8 +4,6 @@ import {
   Route,
   Link
 } from 'react-router-dom';
-
-
 import logo from './logo.svg';
 import './App.css';
 
@@ -13,6 +11,7 @@ import AppNavbar from './components/AppNavbar';
 import Archives from './pages/Archives';
 import Settings from './pages/Settings';
 import WritePost from "./pages/WritePost";
+
 
 class App extends Component {
   render() {
