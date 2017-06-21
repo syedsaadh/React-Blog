@@ -24,5 +24,17 @@
 }
 
 .navbar {
+  background: #fff;
+  border: #fff;
   border-radius: 0px;
+  box-shadow: 12px 15px 20px 0 rgba(46,61,73,.15);
+}
+
+.navbar-default .navbar-nav>li>a, .navbar-default .navbar-text {
+    color: #37bc9b;
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    background: #37bc9b;
+    color: #fff;
 }

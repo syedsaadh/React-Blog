@@ -7,11 +7,11 @@ export default class AppNavbar extends React.Component {
       <Navbar>
       <Navbar.Header>
       <Navbar.Brand>
-      <a href="/">React-Bootstrap</a>
+      <a href="/">React-Blog</a>
       </Navbar.Brand>
       </Navbar.Header>
       <Nav>
-      <NavItem eventKey={0} href="/about">About</NavItem>
+      <NavItem eventKey={0} href="/writepost">Write</NavItem>
       <NavItem eventKey={1} href="/settings">Settings</NavItem>
       <NavItem eventKey={2} href="/archives">Archives</NavItem>
       <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">

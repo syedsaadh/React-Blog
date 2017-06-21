@@ -5,13 +5,14 @@ import {
   Link
 } from 'react-router-dom';
 
+
 import logo from './logo.svg';
 import './App.css';
 
 import AppNavbar from './components/AppNavbar';
 import Archives from './pages/Archives';
 import Settings from './pages/Settings';
-import About from "./pages/About";
+import WritePost from "./pages/WritePost";
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
             <Route path="/" />
             <Route path="/archives" component={Archives} />
             <Route path="/settings" component={Settings} />
+            <Route path="/writepost" component={WritePost} />
             </div>
           </Router>
       </div>
