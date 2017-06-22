@@ -68,7 +68,7 @@ export default class WritePost extends Component {
         </FormGroup>
         <FormGroup controlId="formBasicText2">
         	<ControlLabel>Description</ControlLabel>
-        	<FormControl type="text" value={this.state.desc} placeholder="Enter text" name="desc" onChange={this.handleChange}/>
+        	<FormControl componentClass="textarea" value={this.state.desc} placeholder="Enter text" name="desc" onChange={this.handleChange}/>
         	<FormControl.Feedback />
         </FormGroup>
         <FormGroup>

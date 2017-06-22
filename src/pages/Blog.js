@@ -1,6 +1,9 @@
 import React from "react";
 import * as firebase from "firebase";
 import { forEach } from "lodash";
+import PostHighlight from '../components/PostHighlight';
+
+
 
 export default class Blog extends React.Component {
 	constructor() {
@@ -20,22 +23,17 @@ export default class Blog extends React.Component {
 			posts: _posts
 		});
 	}
+	
 	componentDidMount() {
 		const database = firebase.database();
 		const postListRef = database.ref('posts');
-		postListRef.on('value', this.onDataChanged);
+		postListRef.once('value', this.onDataChanged);
 	}
 	render() {
 		return (
 			<div className="container">
 				<h2>Blog</h2>
-				<div>{this.state.posts.map((value ,index) => 
-						<div key={index}>
-							<h4>{value.title}</h4>
-							<p>{value.desc}</p>
-						</div>
-					)}
-				</div>
+				<PostHighlight data={this.state.posts}/>
 			</div>
 		);
 	}
