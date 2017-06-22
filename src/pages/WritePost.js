@@ -9,7 +9,8 @@ export default class WritePost extends React.Component {
 		super();
 		this.state = {
 			title: '',
-			desc: ''
+			desc: '',
+			valid: false,
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,13 +25,6 @@ export default class WritePost extends React.Component {
 			title: title,
 			desc : desc
 		});
-	}
-	getInitialState() {
-		return {
-			title: '',
-			desc: '',
-			valid: false,
-		};
 	}
 
 	getValidationState() {

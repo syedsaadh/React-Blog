@@ -8,10 +8,8 @@ import logo from './logo.svg';
 import './App.css';
 
 import AppNavbar from './components/AppNavbar';
-import Archives from './pages/Archives';
-import Settings from './pages/Settings';
 import WritePost from "./pages/WritePost";
-
+import Blog from "./pages/Blog";
 
 class App extends Component {
   render() {
@@ -21,9 +19,8 @@ class App extends Component {
             <div>
             <AppNavbar/>
             <Route path="/" />
-            <Route path="/archives" component={Archives} />
-            <Route path="/settings" component={Settings} />
             <Route path="/writepost" component={WritePost} />
+            <Route path="/blog" component={Blog} />
             </div>
           </Router>
       </div>
