@@ -21,23 +21,21 @@ export default class Blog extends React.Component {
 		});
 	}
 	componentDidMount() {
-		const _state = this.state;
-		const _setState = this.setState;
 		const database = firebase.database();
 		const postListRef = database.ref('posts');
 		postListRef.on('value', this.onDataChanged);
 	}
 	render() {
 		return (
-			<div>
+			<div className="container">
 				<h2>Blog</h2>
-				<ul>{this.state.posts.map((value ,index) => 
-						<li key={index}>
-							<p>{value.title}</p>
+				<div>{this.state.posts.map((value ,index) => 
+						<div key={index}>
+							<h4>{value.title}</h4>
 							<p>{value.desc}</p>
-						</li>
+						</div>
 					)}
-				</ul>
+				</div>
 			</div>
 		);
 	}

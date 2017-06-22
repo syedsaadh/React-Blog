@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 import AppNavbar from './components/AppNavbar';
 import WritePost from "./pages/WritePost";
 import Blog from "./pages/Blog";
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <div className="App">

@@ -4,7 +4,7 @@ import * as firebase from "firebase";
 
 
 
-export default class WritePost extends React.Component {
+export default class WritePost extends Component {
 	constructor(){
 		super();
 		this.state = {
@@ -44,7 +44,7 @@ export default class WritePost extends React.Component {
 	
 	handleSubmit(e) {
 		e.preventDefault();
-		if(this.getValidationState() != 'success') return alert("Incomplete Form");
+		if(this.getValidationState() !== 'success') return alert("Incomplete Form");
 		this.writePostData(this.state.title, this.state.desc);
 		alert("Added Post");
 		this.setState({
