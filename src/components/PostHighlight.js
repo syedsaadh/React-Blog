@@ -1,23 +1,21 @@
 import React from "react";
 import renderHTML from 'react-render-html';
+import { truncate } from "lodash";
+import * as removeMd from "remove-markdown";
 var showdown = require('showdown');
 
+//<div>{renderHTML(converter.makeHtml(value.desc))}</div>
 export default class PostHighlight extends React.Component {
-    convertHtml(text) {
-        var converter = new showdown.Converter();
-        return converter.makeHtml(text);
-    }
     mapFn(value, index) {
         var converter = new showdown.Converter();
-        console.log(value);
-        return <div id={"post"+index} key={index}>
+        return <a id={"post"+index} key={index} href="#">
             <h4>{value.title}</h4>
-            <div>{renderHTML(converter.makeHtml(value.desc))}</div>
-        </div>
+            <p>{truncate(removeMd(value.desc), {'length':220})}</p>          
+        </a>
     }
     render() {
         return (
-            <div>
+            <div className="single-article-list">
                 {
                     this.props.data.map(this.mapFn)
                 }
