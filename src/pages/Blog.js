@@ -6,6 +6,7 @@ import PostHighlight from '../components/PostHighlight';
 
 
 export default class Blog extends React.Component {
+	
 	constructor() {
 		super();
 		this.state = {
@@ -30,6 +31,7 @@ export default class Blog extends React.Component {
 		postListRef.once('value', this.onDataChanged);
 	}
 	render() {
+		console.log(this.props);
 		return (
 			<div className="container">
 				<h2>Blog</h2>

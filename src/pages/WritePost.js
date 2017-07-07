@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Form, FormGroup, ControlLabel, FormControl, HelpBlock, Col, Button} from "react-bootstrap";
 import * as firebase from "firebase";
-
+import slug from "slug";
 
 
 export default class WritePost extends Component {
@@ -23,7 +23,8 @@ export default class WritePost extends Component {
 	writePostData(title, desc) {
 		this.newPostRef.set({
 			title: title,
-			desc : desc
+			desc : desc,
+			slug : slug(title, {lower:true})
 		});
 	}
 
